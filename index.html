@@ -49,7 +49,7 @@
       color: var(--text-main);
       line-height: 1.6;
       font-size: 16px;
-      padding-bottom: 80px; /* space for mobile sticky bar */
+      padding-bottom: 95px;
       overflow-x: hidden;
     }
 
@@ -60,7 +60,7 @@
       padding: 0 16px;
     }
 
-    /* 1. Urgency Countdown Top Banner */
+    /* Top Urgency Bar */
     .top-urgency-bar {
       background: linear-gradient(90deg, #12381f 0%, #1c522d 50%, #3b7c19 100%);
       color: #ffffff;
@@ -87,7 +87,7 @@
       letter-spacing: 1px;
     }
 
-    /* Marquee Banner */
+    /* Marquee Ticker */
     .marquee-wrapper {
       background: var(--brand-green);
       color: #ffffff;
@@ -163,6 +163,12 @@
       letter-spacing: 0.4px;
     }
 
+    .header-right-group {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
     .site-nav {
       display: flex;
       align-items: center;
@@ -195,6 +201,92 @@
       box-shadow: 0 4px 12px rgba(37,211,102,0.25);
     }
 
+    /* Mobile Hamburger Menu */
+    .mobile-menu-btn {
+      display: none;
+      background: #f0fdf4;
+      border: 1px solid var(--brand-green);
+      color: var(--brand-dark);
+      font-size: 1.4rem;
+      width: 40px;
+      height: 40px;
+      border-radius: 8px;
+      cursor: pointer;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Mobile Drawer */
+    .mobile-drawer {
+      position: fixed;
+      top: 0;
+      right: -100%;
+      width: 280px;
+      height: 100%;
+      background: #ffffff;
+      z-index: 10001;
+      box-shadow: -5px 0 25px rgba(0,0,0,0.2);
+      transition: right 0.3s ease;
+      padding: 24px 20px;
+      display: flex;
+      flex-direction: column;
+    }
+    .mobile-drawer.open {
+      right: 0;
+    }
+    .drawer-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 24px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--border-color);
+    }
+    .drawer-title {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 800;
+      font-size: 1.3rem;
+      color: var(--brand-primary);
+    }
+    .drawer-close-btn {
+      background: none;
+      border: none;
+      font-size: 1.6rem;
+      cursor: pointer;
+      color: var(--text-muted);
+    }
+    .drawer-nav-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .drawer-nav-list a {
+      text-decoration: none;
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--brand-dark);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .drawer-backdrop {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.5);
+      z-index: 10000;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s;
+    }
+    .drawer-backdrop.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
     /* Section Styling */
     section {
       padding: 40px 0;
@@ -223,7 +315,7 @@
       line-height: 1.35;
     }
 
-    /* 1. HERO SECTION */
+    /* HERO SECTION */
     .hero-section {
       background: radial-gradient(circle at 80% 20%, #eff7ee 0%, #ffffff 70%);
       padding: 30px 0 40px;
@@ -277,62 +369,35 @@
       box-shadow: var(--shadow-sm);
     }
 
-    /* Listing Product Gallery (5 Images) */
-    .hero-gallery-card {
+    /* Clean Hero Featured Product Container */
+    .hero-featured-card {
       background: white;
       border-radius: var(--radius-lg);
-      padding: 18px;
+      padding: 20px;
       box-shadow: var(--shadow-md);
       border: 1px solid var(--border-color);
       margin-bottom: 25px;
+      text-align: center;
     }
-    .main-img-container {
+    .hero-featured-img-wrap {
       width: 100%;
-      height: 340px;
-      background: #fafafa;
-      border-radius: var(--radius-md);
-      overflow: hidden;
+      max-height: 380px;
       display: flex;
       align-items: center;
       justify-content: center;
-      margin-bottom: 12px;
-      position: relative;
-    }
-    .main-img-container img {
-      max-width: 100%;
-      max-height: 100%;
-      object-fit: contain;
-      transition: transform 0.3s ease;
-    }
-    .thumbs-flex {
-      display: flex;
-      gap: 10px;
-      overflow-x: auto;
-      padding-bottom: 4px;
-      -webkit-overflow-scrolling: touch;
-    }
-    .thumb-btn {
-      width: 68px;
-      height: 68px;
-      border-radius: var(--radius-sm);
-      border: 2px solid transparent;
       overflow: hidden;
+      border-radius: var(--radius-md);
+      background: #fdfdfd;
+      padding: 10px;
       cursor: pointer;
-      flex-shrink: 0;
-      background: #f3f4f6;
-      transition: all 0.2s;
     }
-    .thumb-btn.active {
-      border-color: var(--brand-green-dark);
-      box-shadow: 0 0 0 3px rgba(59,124,25,0.25);
-    }
-    .thumb-btn img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
+    .hero-featured-img-wrap img {
+      max-width: 100%;
+      max-height: 360px;
+      object-fit: contain;
     }
 
-    /* Hero Pricing Card */
+    /* Hero Price Card */
     .hero-price-card {
       background: var(--gold-bg);
       border: 2px dashed var(--brand-gold);
@@ -416,7 +481,7 @@
       gap: 6px;
     }
 
-    /* 2. BENEFITS & SYMPTOMS */
+    /* BENEFITS & SYMPTOMS */
     .symptoms-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -512,19 +577,41 @@
       color: var(--text-main);
     }
 
-    .poster-preview-card {
+    /* Product Packaging Details Showcase */
+    .pkg-showcase-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin-top: 20px;
+    }
+    .pkg-info-card {
       background: white;
-      padding: 18px;
       border-radius: var(--radius-lg);
+      padding: 20px;
+      border: 1px solid var(--border-color);
       box-shadow: var(--shadow-sm);
       text-align: center;
     }
-    .poster-preview-card img {
-      max-width: 100%;
+    .pkg-info-card h4 {
+      font-size: 1.15rem;
+      color: var(--brand-primary);
+      margin-bottom: 12px;
+      font-weight: 700;
+    }
+    .pkg-img-preview {
+      width: 100%;
+      height: 240px;
+      object-fit: contain;
       border-radius: var(--radius-md);
+      background: #f9fafb;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+    .pkg-img-preview:hover {
+      transform: scale(1.02);
     }
 
-    /* 3. REVIEWS & SOCIAL PROOF */
+    /* REVIEWS & SOCIAL PROOF */
     .reviews-bg {
       background: white;
     }
@@ -555,11 +642,12 @@
     .carousel-wrap {
       position: relative;
       max-width: 850px;
-      margin: 0 auto 30px;
+      margin: 0 auto 16px;
       overflow: hidden;
       border-radius: var(--radius-lg);
       box-shadow: var(--shadow-md);
       background: #0b1a0e;
+      touch-action: pan-y;
     }
     .carousel-track {
       display: flex;
@@ -570,12 +658,25 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      position: relative;
+      cursor: zoom-in;
     }
     .carousel-slide-item img {
-      max-height: 450px;
+      max-height: 480px;
       width: auto;
       max-width: 100%;
       object-fit: contain;
+    }
+    .carousel-slide-badge {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      background: rgba(0,0,0,0.65);
+      color: #fff;
+      font-size: 0.78rem;
+      padding: 4px 12px;
+      border-radius: 12px;
+      backdrop-filter: blur(4px);
     }
     .carousel-arrow-btn {
       position: absolute;
@@ -601,12 +702,14 @@
     .dots-row {
       display: flex;
       justify-content: center;
-      gap: 8px;
+      gap: 6px;
+      flex-wrap: wrap;
       margin-top: 14px;
+      padding: 0 10px;
     }
     .dot-item {
-      width: 10px;
-      height: 10px;
+      width: 9px;
+      height: 9px;
       border-radius: 50%;
       background: #d1d5db;
       cursor: pointer;
@@ -614,39 +717,52 @@
     }
     .dot-item.active {
       background: var(--brand-green-dark);
-      width: 26px;
+      width: 24px;
       border-radius: 12px;
     }
 
-    /* Video Review Player */
+    /* Video Review Grid Showcase (2 Videos) */
+    .video-showcase-title {
+      text-align: center;
+      margin: 40px 0 20px;
+      font-size: 1.4rem;
+      color: var(--brand-dark);
+      font-weight: 700;
+    }
+    .videos-grid-two {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
     .video-card-box {
-      max-width: 720px;
-      margin: 35px auto 0;
       background: var(--brand-dark);
       border-radius: var(--radius-lg);
-      padding: 22px;
+      padding: 16px;
       color: white;
       text-align: center;
       box-shadow: var(--shadow-lg);
     }
     .video-card-box h3 {
-      font-size: 1.3rem;
-      margin-bottom: 14px;
+      font-size: 1.05rem;
+      margin-bottom: 10px;
       color: #facc15;
+      font-weight: 700;
     }
     .video-wrapper-inner {
       border-radius: var(--radius-md);
       overflow: hidden;
       background: #000;
-      max-height: 400px;
+      max-height: 380px;
     }
     .video-wrapper-inner video {
       width: 100%;
-      max-height: 400px;
+      max-height: 380px;
       display: block;
     }
 
-    /* 4. HOW TO TAKE */
+    /* HOW TO TAKE */
     .usage-cards-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -688,7 +804,7 @@
       margin-bottom: 8px;
     }
 
-    /* 5. ORDER FORM */
+    /* ORDER FORM SECTION */
     .order-section-wrap {
       background: linear-gradient(180deg, var(--bg-white) 0%, #f0f7ef 100%);
       border-top: 2px solid #c8e6c9;
@@ -701,6 +817,7 @@
       padding: 35px 24px;
       box-shadow: var(--shadow-lg);
       border: 2px solid var(--brand-green-dark);
+      position: relative;
     }
     .order-card-head {
       text-align: center;
@@ -710,6 +827,25 @@
       font-size: 1.9rem;
       color: var(--brand-dark);
       margin-bottom: 6px;
+    }
+
+    /* Sheet Status Badge */
+    .sheet-status-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      padding: 4px 12px;
+      border-radius: 12px;
+      background: #f3f4f6;
+      color: var(--text-muted);
+      margin-top: 6px;
+      cursor: pointer;
+    }
+    .sheet-status-badge.connected {
+      background: #dcfce7;
+      color: #15803d;
     }
 
     .form-field-group {
@@ -872,13 +1008,21 @@
       cursor: pointer;
       box-shadow: 0 10px 30px rgba(59,124,25,0.35);
       transition: all 0.2s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
     }
     .btn-submit-confirm:hover {
       transform: translateY(-2px);
       box-shadow: 0 14px 36px rgba(59,124,25,0.45);
     }
+    .btn-submit-confirm:disabled {
+      opacity: 0.7;
+      cursor: not-allowed;
+    }
 
-    /* 6. FAQ ACCORDION SECTION */
+    /* FAQ ACCORDION SECTION */
     .faq-section {
       background: var(--bg-white);
     }
@@ -960,6 +1104,10 @@
       box-shadow: var(--shadow-sm);
       border: 2px solid #e5e7eb;
       cursor: pointer;
+      transition: transform 0.2s;
+    }
+    .fssai-cert-img:hover {
+      transform: scale(1.03);
     }
 
     /* Footer */
@@ -1017,7 +1165,7 @@
       transform: translateY(-2px);
     }
 
-    /* PERMANENT MOBILE & DESKTOP STICKY BUY NOW BAR */
+    /* PERMANENT STICKY BUY NOW BAR */
     .sticky-buy-bar {
       position: fixed;
       bottom: 0;
@@ -1030,7 +1178,7 @@
       align-items: center;
       justify-content: space-between;
       box-shadow: 0 -6px 22px rgba(0,0,0,0.18);
-      z-index: 9999;
+      z-index: 9995;
     }
     .sticky-price-col {
       display: flex;
@@ -1065,12 +1213,12 @@
     /* Floating WhatsApp Stack */
     .floating-stack {
       position: fixed;
-      bottom: 78px;
+      bottom: 82px;
       right: 18px;
       display: flex;
       flex-direction: column;
       gap: 10px;
-      z-index: 9998;
+      z-index: 9990;
     }
     .float-circle-btn {
       width: 50px;
@@ -1087,14 +1235,14 @@
     .float-wa { background: #25d366; }
     .float-call { background: var(--brand-green-dark); }
 
-    /* Modal Overlay */
+    /* Modals Overlay */
     .modal-overlay {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      background: rgba(0,0,0,0.75);
+      background: rgba(0,0,0,0.8);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -1111,21 +1259,61 @@
     .modal-card {
       background: white;
       border-radius: var(--radius-lg);
-      max-width: 520px;
+      max-width: 540px;
       width: 100%;
-      padding: 35px 24px;
+      padding: 30px 24px;
       text-align: center;
       box-shadow: var(--shadow-lg);
+      max-height: 90vh;
+      overflow-y: auto;
+      position: relative;
+    }
+    .modal-close-x {
+      position: absolute;
+      top: 14px;
+      right: 16px;
+      font-size: 1.5rem;
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: #6b7280;
+    }
+
+    /* Lightbox Modal */
+    .lightbox-card {
+      background: transparent;
+      max-width: 90vw;
+      max-height: 90vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+    .lightbox-img {
+      max-width: 100%;
+      max-height: 80vh;
+      object-fit: contain;
+      border-radius: 12px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+    }
+    .lightbox-caption {
+      color: white;
+      margin-top: 12px;
+      font-size: 1rem;
+      font-weight: 600;
+      text-align: center;
     }
 
     /* Responsive adjustments */
     @media (max-width: 768px) {
       .site-nav { display: none; }
+      .mobile-menu-btn { display: flex; }
       .footer-grid { grid-template-columns: 1fr; gap: 20px; }
-      .course-options-grid, .pay-options-grid { grid-template-columns: 1fr; }
+      .course-options-grid, .pay-options-grid, .pkg-showcase-grid { grid-template-columns: 1fr; }
       .hero-h1 { font-size: 1.55rem; }
       .section-title { font-size: 1.5rem; }
-      .main-img-container { height: 270px; }
+      .stats-counter-grid { grid-template-columns: 1fr; gap: 16px; }
     }
   </style>
 </head>
@@ -1149,11 +1337,7 @@
   <header class="site-header">
     <div class="container header-inner">
       <a href="#hero" class="logo-container">
-        <img src="assets/logo/Final_Logo_1440.avif" alt="Premexa Logo" class="logo-img" onerror="this.style.display='none'">
-        <div class="logo-text-box">
-          <span class="logo-title">Premexa</span>
-          <span class="logo-subtitle">Natural by Nature, Perfected by Science</span>
-        </div>
+        <img src="assets/logo/logo.avif" alt="Premexa Logo" class="logo-img" onerror="this.style.display='none'">
       </a>
 
       <ul class="site-nav">
@@ -1165,13 +1349,34 @@
         <li><a href="#order-form">ઓર્ડર કરો</a></li>
       </ul>
 
-      <a href="tel:7778006375" class="btn-header-call">
-        📞 7778006375
-      </a>
+      <div class="header-right-group">
+        <a href="tel:7778006375" class="btn-header-call">
+          📞 7778006375
+        </a>
+        <button class="mobile-menu-btn" onclick="toggleMobileDrawer()" title="Open Menu">☰</button>
+      </div>
     </div>
   </header>
 
-  <!-- 1. HERO SECTION (Title + 5 Images Gallery + Price + Buy Button) -->
+  <!-- Mobile Drawer Menu -->
+  <div class="drawer-backdrop" id="drawer-backdrop" onclick="toggleMobileDrawer()"></div>
+  <div class="mobile-drawer" id="mobile-drawer">
+    <div class="drawer-head">
+      <span class="drawer-title">Premexa Menu</span>
+      <button class="drawer-close-btn" onclick="toggleMobileDrawer()">✕</button>
+    </div>
+    <ul class="drawer-nav-list">
+      <li><a href="#hero" onclick="toggleMobileDrawer()">🏠 Home (મુખ્ય પેજ)</a></li>
+      <li><a href="#benefits" onclick="toggleMobileDrawer()">🌿 ફાયદાઓ અને ઘટકો</a></li>
+      <li><a href="#reviews" onclick="toggleMobileDrawer()">⭐ ગ્રાહકના રિવ્યુઓ</a></li>
+      <li><a href="#usage" onclick="toggleMobileDrawer()">🥛 લેવાની રીત (How to Take)</a></li>
+      <li><a href="#faq" onclick="toggleMobileDrawer()">❓ વારંવાર પૂછાતા પ્રશ્નો</a></li>
+      <li><a href="#order-form" onclick="toggleMobileDrawer()">🛒 ઓર્ડર કરો (Order Form)</a></li>
+      <li><a href="javascript:void(0)" onclick="toggleMobileDrawer(); openSheetModal();">⚙️ Google Sheet Setup</a></li>
+    </ul>
+  </div>
+
+  <!-- 1. HERO SECTION -->
   <section class="hero-section" id="hero">
     <div class="container">
       <div class="rating-badge-row">
@@ -1189,27 +1394,10 @@
         <div class="hero-badge-pill">🚚 ફ્રી હોમ ડિલિવરી</div>
       </div>
 
-      <!-- 5 Listing Product Photos Gallery -->
-      <div class="hero-gallery-card">
-        <div class="main-img-container">
-          <img id="main-product-img" src="assets/product/HIGH01.png" alt="Premexa HIGH B12 Powder Box">
-        </div>
-        <div class="thumbs-flex">
-          <div class="thumb-btn active" onclick="switchProductImg('assets/product/HIGH01.png', this)">
-            <img src="assets/product/HIGH01.png" alt="Product 1">
-          </div>
-          <div class="thumb-btn" onclick="switchProductImg('assets/product/HIGH02.png', this)">
-            <img src="assets/product/HIGH02.png" alt="Product 2">
-          </div>
-          <div class="thumb-btn" onclick="switchProductImg('assets/product/HIGH03.png', this)">
-            <img src="assets/product/HIGH03.png" alt="Product 3">
-          </div>
-          <div class="thumb-btn" onclick="switchProductImg('assets/product/HIGH04.png', this)">
-            <img src="assets/product/HIGH04.png" alt="Product 4">
-          </div>
-          <div class="thumb-btn" onclick="switchProductImg('assets/product/HIGH B12 03.png', this)">
-            <img src="assets/product/HIGH B12 03.png" alt="Product 5">
-          </div>
+      <!-- Clean Featured Product Showcase -->
+      <div class="hero-featured-card">
+        <div class="hero-featured-img-wrap" onclick="openLightbox('assets/product/high01.png', 'Premexa HIGH B12 Box')">
+          <img id="main-product-img" src="assets/product/high01.png" alt="Premexa HIGH B12 Powder Box">
         </div>
       </div>
 
@@ -1329,9 +1517,20 @@
         </div>
       </div>
 
-      <div class="poster-preview-card">
-        <img src="assets/product/premexa igrediant 01.jpg" alt="Premexa Ingredients List">
+      <!-- Product Packaging Details Showcase -->
+      <div class="pkg-showcase-grid">
+        <div class="pkg-info-card">
+          <h4>📦 ઓરિજિનલ પેકેજિંગ વિગતો (Box Front View)</h4>
+          <img src="assets/product/product_front.png" alt="Premexa Front Box" class="pkg-img-preview" onclick="openLightbox(this.src, 'Premexa HIGH B12 Front Box')">
+          <p style="font-size:0.85rem;color:var(--text-muted);margin-top:8px;">૧૦૦% શુદ્ધ, આયુર્વેદિક અને FSSAI દ્વારા પ્રમાણિત</p>
+        </div>
+        <div class="pkg-info-card">
+          <h4>📋 પોષક તત્ત્વો અને ઘટકોનું લીસ્ટ (Nutritional Info & Back Box)</h4>
+          <img src="assets/product/product_back.png" alt="Premexa Back Box Info" class="pkg-img-preview" onclick="openLightbox(this.src, 'Premexa HIGH B12 Nutritional Information')">
+          <p style="font-size:0.85rem;color:var(--text-muted);margin-top:8px;">🔍 મોટી ઇમેજ જોવા માટે ક્લિક કરો</p>
+        </div>
       </div>
+
     </div>
   </section>
 
@@ -1358,43 +1557,104 @@
         </div>
       </div>
 
-      <!-- Reviews Photo Carousel Slider -->
-      <div class="carousel-wrap">
-        <button class="carousel-arrow-btn prev" onclick="moveSlide(-1)">❮</button>
+      <!-- Customer Reviews Photo Carousel (All 16 real review images!) -->
+      <div class="carousel-wrap" id="carousel-wrap-el">
+        <button class="carousel-arrow-btn prev" onclick="moveSlide(-1)" title="Previous Review">❮</button>
         <div class="carousel-track" id="review-slides">
-          <div class="carousel-slide-item">
-            <img src="assets/reviews/WhatsApp Image 2026-08-15 at 14.44.38.jpeg" alt="Customer Review 1">
+          <div class="carousel-slide-item" onclick="openLightbox('assets/reviews/review_01.jpeg', 'ગ્રાહક પ્રતિભાવ ૧')">
+            <span class="carousel-slide-badge">૧ / ૧૬ • ગ્રાહક રિવ્યુ (🔍 ક્લિક કરો)</span>
+            <img src="assets/reviews/review_01.jpeg" alt="Customer Review 1" loading="lazy">
           </div>
-          <div class="carousel-slide-item">
-            <img src="assets/reviews/WhatsApp Image 2026-08-15 at 14.44.39.jpeg" alt="Customer Review 2">
+          <div class="carousel-slide-item" onclick="openLightbox('assets/reviews/review_02.jpeg', 'ગ્રાહક પ્રતિભાવ ૨')">
+            <span class="carousel-slide-badge">૨ / ૧૬ • ગ્રાહક રિવ્યુ (🔍 ક્લિક કરો)</span>
+            <img src="assets/reviews/review_02.jpeg" alt="Customer Review 2" loading="lazy">
           </div>
-          <div class="carousel-slide-item">
-            <img src="assets/reviews/WhatsApp Image 2026-08-15 at 14.44.40.jpeg" alt="Customer Review 3">
+          <div class="carousel-slide-item" onclick="openLightbox('assets/reviews/review_03.jpeg', 'ગ્રાહક પ્રતિભાવ ૩')">
+            <span class="carousel-slide-badge">૩ / ૧૬ • ગ્રાહક રિવ્યુ (🔍 ક્લિક કરો)</span>
+            <img src="assets/reviews/review_03.jpeg" alt="Customer Review 3" loading="lazy">
           </div>
-          <div class="carousel-slide-item">
-            <img src="assets/reviews/WhatsApp Image 2026-08-21 at 17.49.23.jpeg" alt="Customer Review 4">
+          <div class="carousel-slide-item" onclick="openLightbox('assets/reviews/review_04.jpeg', 'ગ્રાહક પ્રતિભાવ ૪')">
+            <span class="carousel-slide-badge">૪ / ૧૬ • ગ્રાહક રિવ્યુ (🔍 ક્લિક કરો)</span>
+            <img src="assets/reviews/review_04.jpeg" alt="Customer Review 4" loading="lazy">
           </div>
-          <div class="carousel-slide-item">
-            <img src="assets/reviews/WhatsApp Image 2026-08-21 at 17.50.29.jpeg" alt="Customer Review 5">
+          <div class="carousel-slide-item" onclick="openLightbox('assets/reviews/review_05.jpeg', 'ગ્રાહક પ્રતિભાવ ૫')">
+            <span class="carousel-slide-badge">૫ / ૧૬ • ગ્રાહક રિવ્યુ (🔍 ક્લિક કરો)</span>
+            <img src="assets/reviews/review_05.jpeg" alt="Customer Review 5" loading="lazy">
           </div>
-          <div class="carousel-slide-item">
-            <img src="assets/reviews/WhatsApp Image 2026-08-21 at 17.51.45.jpeg" alt="Customer Review 6">
+          <div class="carousel-slide-item" onclick="openLightbox('assets/reviews/review_06.jpeg', 'ગ્રાહક પ્રતિભાવ ૬')">
+            <span class="carousel-slide-badge">૬ / ૧૬ • ગ્રાહક રિવ્યુ (🔍 ક્લિક કરો)</span>
+            <img src="assets/reviews/review_06.jpeg" alt="Customer Review 6" loading="lazy">
+          </div>
+          <div class="carousel-slide-item" onclick="openLightbox('assets/reviews/review_07.jpeg', 'ગ્રાહક પ્રતિભાવ ૭')">
+            <span class="carousel-slide-badge">૭ / ૧૬ • ગ્રાહક રિવ્યુ (🔍 ક્લિક કરો)</span>
+            <img src="assets/reviews/review_07.jpeg" alt="Customer Review 7" loading="lazy">
+          </div>
+          <div class="carousel-slide-item" onclick="openLightbox('assets/reviews/review_08.jpeg', 'ગ્રાહક પ્રતિભાવ ૮')">
+            <span class="carousel-slide-badge">૮ / ૧૬ • ગ્રાહક રિવ્યુ (🔍 ક્લિક કરો)</span>
+            <img src="assets/reviews/review_08.jpeg" alt="Customer Review 8" loading="lazy">
+          </div>
+          <div class="carousel-slide-item" onclick="openLightbox('assets/reviews/review_09.jpeg', 'ગ્રાહક પ્રતિભાવ ૯')">
+            <span class="carousel-slide-badge">૯ / ૧૬ • ગ્રાહક રિવ્યુ (🔍 ક્લિક કરો)</span>
+            <img src="assets/reviews/review_09.jpeg" alt="Customer Review 9" loading="lazy">
+          </div>
+          <div class="carousel-slide-item" onclick="openLightbox('assets/reviews/review_10.jpeg', 'ગ્રાહક પ્રતિભાવ ૧૦')">
+            <span class="carousel-slide-badge">૧૦ / ૧૬ • ગ્રાહક રિવ્યુ (🔍 ક્લિક કરો)</span>
+            <img src="assets/reviews/review_10.jpeg" alt="Customer Review 10" loading="lazy">
+          </div>
+          <div class="carousel-slide-item" onclick="openLightbox('assets/reviews/review_11.jpeg', 'ગ્રાહક પ્રતિભાવ ૧૧')">
+            <span class="carousel-slide-badge">૧૧ / ૧૬ • ગ્રાહક રિવ્યુ (🔍 ક્લિક કરો)</span>
+            <img src="assets/reviews/review_11.jpeg" alt="Customer Review 11" loading="lazy">
+          </div>
+          <div class="carousel-slide-item" onclick="openLightbox('assets/reviews/review_12.jpeg', 'ગ્રાહક પ્રતિભાવ ૧૨')">
+            <span class="carousel-slide-badge">૧૨ / ૧૬ • ગ્રાહક રિવ્યુ (🔍 ક્લિક કરો)</span>
+            <img src="assets/reviews/review_12.jpeg" alt="Customer Review 12" loading="lazy">
+          </div>
+          <div class="carousel-slide-item" onclick="openLightbox('assets/reviews/review_13.jpeg', 'ગ્રાહક પ્રતિભાવ ૧૩')">
+            <span class="carousel-slide-badge">૧૩ / ૧૬ • ગ્રાહક રિવ્યુ (🔍 ક્લિક કરો)</span>
+            <img src="assets/reviews/review_13.jpeg" alt="Customer Review 13" loading="lazy">
+          </div>
+          <div class="carousel-slide-item" onclick="openLightbox('assets/reviews/review_14.jpeg', 'ગ્રાહક પ્રતિભાવ ૧૪')">
+            <span class="carousel-slide-badge">૧૪ / ૧૬ • ગ્રાહક રિવ્યુ (🔍 ક્લિક કરો)</span>
+            <img src="assets/reviews/review_14.jpeg" alt="Customer Review 14" loading="lazy">
+          </div>
+          <div class="carousel-slide-item" onclick="openLightbox('assets/reviews/review_15.jpeg', 'ગ્રાહક પ્રતિભાવ ૧૫')">
+            <span class="carousel-slide-badge">૧૫ / ૧૬ • ગ્રાહક રિવ્યુ (🔍 ક્લિક કરો)</span>
+            <img src="assets/reviews/review_15.jpeg" alt="Customer Review 15" loading="lazy">
+          </div>
+          <div class="carousel-slide-item" onclick="openLightbox('assets/reviews/review_16.jpeg', 'ગ્રાહક પ્રતિભાવ ૧૬')">
+            <span class="carousel-slide-badge">૧૬ / ૧૬ • ગ્રાહક રિવ્યુ (🔍 ક્લિક કરો)</span>
+            <img src="assets/reviews/review_16.jpeg" alt="Customer Review 16" loading="lazy">
           </div>
         </div>
-        <button class="carousel-arrow-btn next" onclick="moveSlide(1)">❯</button>
+        <button class="carousel-arrow-btn next" onclick="moveSlide(1)" title="Next Review">❯</button>
       </div>
 
       <div class="dots-row" id="carousel-dots"></div>
 
-      <!-- Customer Video Review Player -->
-      <div class="video-card-box">
-        <h3>📹 ગ્રાહકનો લાઈવ વીડિયો પ્રતિભાવ (Video Review)</h3>
-        <div class="video-wrapper-inner">
-          <video controls poster="assets/product/HIGH01.png">
-            <source src="assets/reviews/WhatsApp Video 2025-05-31 at 21.45.10_e5bb103c.mp4" type="video/mp4">
-          </video>
+      <!-- Customer Video Review Showcase (Both MP4 Videos!) -->
+      <h3 class="video-showcase-title">📹 ગ્રાહકોના લાઈવ વીડિયો પ્રતિભાવો (Video Reviews)</h3>
+      <div class="videos-grid-two">
+        <div class="video-card-box">
+          <h3>▶️ લાઈવ અનુભવ વીડિયો - ૧</h3>
+          <div class="video-wrapper-inner">
+            <video controls poster="assets/product/high01.png" preload="metadata">
+              <source src="assets/reviews/review_video_2.mp4" type="video/mp4">
+              તમારું બ્રાઉઝર વીડિયો પ્લેબેક સપોર્ટ કરતું નથી.
+            </video>
+          </div>
+        </div>
+
+        <div class="video-card-box">
+          <h3>▶️ લાઈવ અનુભવ વીડિયો - ૨</h3>
+          <div class="video-wrapper-inner">
+            <video controls poster="assets/product/high02.png" preload="metadata">
+              <source src="assets/reviews/review_video_1.mp4" type="video/mp4">
+              તમારું બ્રાઉઝર વીડિયો પ્લેબેક સપોર્ટ કરતું નથી.
+            </video>
+          </div>
         </div>
       </div>
+
     </div>
   </section>
 
@@ -1483,6 +1743,10 @@
         <div class="order-card-head">
           <h2>ઓર્ડર ફોર્મ ( Order Form )</h2>
           <p>ઓર્ડર કરવા માટે નીચે તમારું નામ, મોબાઈલ નંબર, અને પૂરું સરનામું દાખલ કરો.</p>
+          <div class="sheet-status-badge" id="sheet-badge-indicator" onclick="openSheetModal()">
+            <span id="sheet-badge-icon">⚙️</span>
+            <span id="sheet-badge-text">Google Sheet Status</span>
+          </div>
         </div>
 
         <form id="premexa-order-form" onsubmit="handleOrderSubmit(event)">
@@ -1496,7 +1760,7 @@
           <!-- Mobile -->
           <div class="form-field-group">
             <label for="cust-phone">મોબાઈલ નંબર :</label>
-            <input type="tel" id="cust-phone" class="input-control" placeholder="અહીં તમારો ૧૦ અંકનો મોબાઈલ નંબર દાખલ કરો" pattern="[0-9]{10}" title="૧૦ અંકનો સાચો મોબાઈલ નંબર દાખલ કરો" required>
+            <input type="tel" id="cust-phone" class="input-control" placeholder="અહીં તમારો ૧૦ અંકનો મોબાઈલ નંબર દાખલ કરો" pattern="[0-9]{10}" title="૧૦ અંકનો સાચો મોબાઈલ નંબર દાખલ કરો" required maxlength="10">
           </div>
 
           <!-- Address -->
@@ -1569,8 +1833,9 @@
             </div>
           </div>
 
-          <button type="submit" class="btn-submit-confirm">
-            ✅ ઓર્ડર કન્ફર્મ કરો ( Confirm Order )
+          <button type="submit" class="btn-submit-confirm" id="order-submit-btn">
+            <span id="btn-icon">✅</span>
+            <span id="btn-text">ઓર્ડર કન્ફર્મ કરો ( Confirm Order )</span>
           </button>
         </form>
       </div>
@@ -1583,7 +1848,7 @@
             <div class="fssai-lic-tag">લાયસન્સ નંબર : 10721999000097</div>
             <p style="font-size:0.9rem;color:var(--brand-green-dark);font-weight:700;">✓ FSSAI દ્વારા માન્યતા પ્રાપ્ત ૧૦૦% સેફ ફૂડ સપ્લિમેન્ટ</p>
           </div>
-          <img src="assets/licence/WhatsApp Image 2026-08-24 at 21.13.02.jpeg" alt="FSSAI Certificate Premexa" class="fssai-cert-img" onclick="window.open(this.src)">
+          <img src="assets/licence/fssai_licence.jpeg" alt="FSSAI Certificate Premexa" class="fssai-cert-img" onclick="openLightbox(this.src, 'Premexa FSSAI Certificate')">
         </div>
       </div>
     </div>
@@ -1608,6 +1873,7 @@
             <li><a href="privacy.html">Privacy Policy</a></li>
             <li><a href="return.html">Return & Refund Policy</a></li>
             <li><a href="#order-form">ઓર્ડર કરો</a></li>
+            <li><a href="javascript:void(0)" onclick="openSheetModal()">⚙️ Google Sheet Configuration</a></li>
           </ul>
         </div>
 
@@ -1647,18 +1913,54 @@
   <!-- Order Success Modal -->
   <div class="modal-overlay" id="success-modal">
     <div class="modal-card">
-      <div style="font-size:2.8rem;margin-bottom:10px;">🎉</div>
-      <h2 style="color:var(--brand-dark);margin-bottom:10px;">તમારો ઓર્ડર સફળતાપૂર્વક નોંધાઈ ગયો છે!</h2>
-      <p style="color:var(--text-muted);margin-bottom:18px;">અમારી ટીમ ટૂંક સમયમાં તમારા ઓર્ડરની પુષ્ટિ માટે સંપર્ક કરશે.</p>
-      <div id="modal-summary" style="background:#f4f8f5;padding:14px;border-radius:10px;text-align:left;font-size:0.92rem;margin-bottom:18px;"></div>
-      <button onclick="closeModal()" style="background:var(--brand-green-dark);color:white;padding:12px 30px;border-radius:25px;border:none;font-weight:700;cursor:pointer;">ઓકે (OK)</button>
+      <button class="modal-close-x" onclick="closeModal()">✕</button>
+      <div style="font-size:3rem;margin-bottom:8px;">🎉</div>
+      <h2 style="color:var(--brand-dark);margin-bottom:8px;">તમારો ઓર્ડર સફળતાપૂર્વક નોંધાઈ ગયો છે!</h2>
+      <p style="color:var(--text-muted);margin-bottom:16px;">અમારી ટીમ ટૂંક સમયમાં તમારા ઓર્ડરની પુષ્ટિ માટે સંપર્ક કરશે.</p>
+      
+      <div id="modal-summary" style="background:#f4f8f5;padding:16px;border-radius:12px;text-align:left;font-size:0.95rem;margin-bottom:20px;border:1px solid #d1e7dd;"></div>
+      
+      <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;">
+        <button onclick="closeModal()" style="background:var(--brand-primary);color:white;padding:12px 24px;border-radius:25px;border:none;font-weight:700;cursor:pointer;">ઓકે (OK)</button>
+        <a id="wa-confirm-btn" href="#" target="_blank" style="background:#25d366;color:white;padding:12px 24px;border-radius:25px;text-decoration:none;font-weight:700;display:inline-flex;align-items:center;gap:6px;">📲 WhatsApp પર મોકલો</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Image Lightbox Modal -->
+  <div class="modal-overlay" id="lightbox-modal" onclick="closeLightbox(event)">
+    <div class="lightbox-card">
+      <button class="modal-close-x" style="color:white;top:-35px;right:-10px;" onclick="closeLightboxDirect()">✕ Close</button>
+      <img src="" id="lightbox-img-el" class="lightbox-img" alt="Enlarged preview">
+      <div class="lightbox-caption" id="lightbox-caption-el"></div>
+    </div>
+  </div>
+
+  <!-- Google Sheet Configuration Modal -->
+  <div class="modal-overlay" id="sheet-config-modal">
+    <div class="modal-card">
+      <button class="modal-close-x" onclick="closeSheetModal()">✕</button>
+      <div style="font-size:2.5rem;margin-bottom:8px;">⚙️</div>
+      <h2 style="color:var(--brand-dark);margin-bottom:8px;">Google Sheet Web App Setting</h2>
+      <p style="font-size:0.9rem;color:var(--text-muted);margin-bottom:16px;">
+        Google Apps Script Web App URL અહી દાખલ કરો જેથી બધા ઓર્ડર સીધા તમારી Google Sheet માં સેવ થાય.
+      </p>
+      
+      <div style="text-align:left;margin-bottom:16px;">
+        <label style="font-weight:700;display:block;margin-bottom:6px;font-size:0.9rem;">Web App URL (https://script.google.com/macros/s/...):</label>
+        <input type="url" id="sheet-url-input" class="input-control" placeholder="https://script.google.com/macros/s/..." style="font-size:0.9rem;">
+      </div>
+
+      <div style="display:flex;gap:10px;justify-content:center;">
+        <button onclick="saveSheetUrl()" style="background:var(--brand-green-dark);color:white;padding:10px 24px;border-radius:20px;border:none;font-weight:700;cursor:pointer;">💾 સેવ કરો (Save)</button>
+        <button onclick="closeSheetModal()" style="background:#e5e7eb;color:var(--text-main);padding:10px 20px;border-radius:20px;border:none;font-weight:700;cursor:pointer;">બંધ કરો</button>
+      </div>
     </div>
   </div>
 
   <!-- JavaScript -->
   <script>
-    // Paste your Google Apps Script Web App URL here to stream all orders directly to Google Sheets!
-    const GOOGLE_SHEET_SCRIPT_URL = ""; 
+    let GOOGLE_SHEET_SCRIPT_URL = localStorage.getItem('premexa_sheet_url') || "https://script.google.com/macros/s/AKfycbyv7QOLaWSwBhq4kt3Y6Mu6EC1i1y2-AGnUTY-_KLaGnsBSshEs6CqmkPN9A9f0rQMxkQ/exec"; 
 
     let currentCourse = 3;
     let currentPayment = 'online';
@@ -1669,9 +1971,8 @@
       3: { mrp: 2499, offer: 1500 }
     };
 
-    // Countdown Timer logic (10 minutes reset)
     function startCountdown() {
-      let duration = 599; // 9 minutes 59 seconds
+      let duration = 599; // 9 min 59 sec
       const display = document.getElementById('countdown-timer');
       setInterval(() => {
         const minutes = Math.floor(duration / 60);
@@ -1681,10 +1982,11 @@
       }, 1000);
     }
 
-    function switchProductImg(src, elem) {
-      document.getElementById('main-product-img').src = src;
-      document.querySelectorAll('.thumb-btn').forEach(t => t.classList.remove('active'));
-      elem.classList.add('active');
+    function toggleMobileDrawer() {
+      const drawer = document.getElementById('mobile-drawer');
+      const backdrop = document.getElementById('drawer-backdrop');
+      drawer.classList.toggle('open');
+      backdrop.classList.toggle('active');
     }
 
     function selectCourse(duration) {
@@ -1736,6 +2038,20 @@
         dot.onclick = () => goToSlide(idx);
         dotsContainer.appendChild(dot);
       });
+
+      let touchStartX = 0;
+      let touchEndX = 0;
+      const wrap = document.getElementById('carousel-wrap-el');
+      
+      wrap.addEventListener('touchstart', e => {
+        touchStartX = e.changedTouches[0].screenX;
+      }, { passive: true });
+
+      wrap.addEventListener('touchend', e => {
+        touchEndX = e.changedTouches[0].screenX;
+        if (touchEndX < touchStartX - 40) moveSlide(1);
+        if (touchEndX > touchStartX + 40) moveSlide(-1);
+      }, { passive: true });
     }
 
     function moveSlide(direction) {
@@ -1756,8 +2072,76 @@
       });
     }
 
+    function openLightbox(src, caption) {
+      document.getElementById('lightbox-img-el').src = src;
+      document.getElementById('lightbox-caption-el').textContent = caption || '';
+      document.getElementById('lightbox-modal').classList.add('active');
+    }
+
+    function closeLightbox(e) {
+      if (e.target.id === 'lightbox-modal') {
+        document.getElementById('lightbox-modal').classList.remove('active');
+      }
+    }
+
+    function closeLightboxDirect() {
+      document.getElementById('lightbox-modal').classList.remove('active');
+    }
+
+    function updateSheetBadge() {
+      const icon = document.getElementById('sheet-badge-icon');
+      const text = document.getElementById('sheet-badge-text');
+      const badge = document.getElementById('sheet-badge-indicator');
+      
+      if (GOOGLE_SHEET_SCRIPT_URL && GOOGLE_SHEET_SCRIPT_URL.trim() !== "") {
+        icon.textContent = "🟢";
+        text.textContent = "Google Sheet સક્રિય છે";
+        badge.classList.add('connected');
+      } else {
+        icon.textContent = "⚙️";
+        text.textContent = "Google Sheet કનેક્ટ કરો";
+        badge.classList.remove('connected');
+      }
+    }
+
+    function openSheetModal() {
+      document.getElementById('sheet-url-input').value = GOOGLE_SHEET_SCRIPT_URL;
+      document.getElementById('sheet-config-modal').classList.add('active');
+    }
+
+    function closeSheetModal() {
+      document.getElementById('sheet-config-modal').classList.remove('active');
+    }
+
+    function saveSheetUrl() {
+      const url = document.getElementById('sheet-url-input').value.trim();
+      GOOGLE_SHEET_SCRIPT_URL = url;
+      localStorage.setItem('premexa_sheet_url', url);
+      updateSheetBadge();
+      closeSheetModal();
+      alert('Google Sheet Web App URL સફળતાપૂર્વક સેવ થઈ ગઈ છે!');
+    }
+
+    function initPhoneInputSanitizer() {
+      const phoneInput = document.getElementById('cust-phone');
+      if (!phoneInput) return;
+      phoneInput.addEventListener('input', function(e) {
+        const guToEn = {'૦':'0','૧':'1','૨':'2','૩':'3','૪':'4','૫':'5','૬':'6','૭':'7','૮':'8','૯':'9'};
+        let val = e.target.value;
+        val = val.replace(/[૦-૯]/g, d => guToEn[d]);
+        val = val.replace(/\D/g, '');
+        if (val.length > 10) val = val.slice(0, 10);
+        e.target.value = val;
+      });
+    }
+
     function handleOrderSubmit(e) {
       e.preventDefault();
+      
+      const submitBtn = document.getElementById('order-submit-btn');
+      const btnText = document.getElementById('btn-text');
+      const btnIcon = document.getElementById('btn-icon');
+      
       const name = document.getElementById('cust-name').value.trim();
       const phone = document.getElementById('cust-phone').value.trim();
       const address = document.getElementById('cust-address').value.trim();
@@ -1776,26 +2160,48 @@
         total: `₹${finalAmount}`
       };
 
-      if (GOOGLE_SHEET_SCRIPT_URL) {
+      submitBtn.disabled = true;
+      btnIcon.textContent = "⏳";
+      btnText.textContent = "ઓર્ડર પ્રોસેસ થઈ રહ્યો છે...";
+
+      try {
+        const savedOrders = JSON.parse(localStorage.getItem('premexa_orders') || '[]');
+        savedOrders.push(orderData);
+        localStorage.setItem('premexa_orders', JSON.stringify(savedOrders));
+      } catch (err) {}
+
+      if (GOOGLE_SHEET_SCRIPT_URL && GOOGLE_SHEET_SCRIPT_URL.trim() !== "") {
         fetch(GOOGLE_SHEET_SCRIPT_URL, {
           method: 'POST',
           mode: 'no-cors',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(orderData)
-        }).catch(err => console.log('Google Sheets submit error:', err));
+        }).catch(err => {
+          console.log('Google Sheets submit notice:', err);
+        });
       }
 
-      const summaryHTML = `
-        <p><strong>નામ:</strong> ${name}</p>
-        <p><strong>મોબાઈલ:</strong> ${phone}</p>
-        <p><strong>કોર્સ:</strong> ${orderData.course}</p>
-        <p><strong>પેમેન્ટ મોડ:</strong> ${orderData.payment}</p>
-        <p><strong>કુલ રકમ:</strong> ₹${finalAmount}</p>
-        <p><strong>સરનામું:</strong> ${address}</p>
-      `;
+      setTimeout(() => {
+        submitBtn.disabled = false;
+        btnIcon.textContent = "✅";
+        btnText.textContent = "ઓર્ડર કન્ફર્મ કરો ( Confirm Order )";
 
-      document.getElementById('modal-summary').innerHTML = summaryHTML;
-      document.getElementById('success-modal').classList.add('active');
+        const summaryHTML = `
+          <p style="margin-bottom:6px;"><strong>નામ:</strong> ${name}</p>
+          <p style="margin-bottom:6px;"><strong>મોબાઈલ:</strong> ${phone}</p>
+          <p style="margin-bottom:6px;"><strong>કોર્સ:</strong> ${orderData.course}</p>
+          <p style="margin-bottom:6px;"><strong>પેમેન્ટ મોડ:</strong> ${orderData.payment}</p>
+          <p style="margin-bottom:6px;color:var(--brand-primary);font-size:1.1rem;"><strong>કુલ રકમ:</strong> ₹${finalAmount}</p>
+          <p style="margin-bottom:0;"><strong>સરનામું:</strong> ${address}</p>
+        `;
+
+        document.getElementById('modal-summary').innerHTML = summaryHTML;
+
+        const waMsg = `Hi Premexa, I have placed an order:%0AName: ${encodeURIComponent(name)}%0APhone: ${encodeURIComponent(phone)}%0ACourse: ${encodeURIComponent(orderData.course)}%0APayment: ${encodeURIComponent(orderData.payment)}%0ATotal: ₹${finalAmount}%0AAddress: ${encodeURIComponent(address)}`;
+        document.getElementById('wa-confirm-btn').href = `https://wa.me/917778006375?text=${waMsg}`;
+
+        document.getElementById('success-modal').classList.add('active');
+      }, 700);
     }
 
     function closeModal() {
@@ -1836,6 +2242,8 @@
       startCountdown();
       initCarousel();
       updatePriceSummary();
+      updateSheetBadge();
+      initPhoneInputSanitizer();
       loadDynamicUrlParams();
     });
   </script>
